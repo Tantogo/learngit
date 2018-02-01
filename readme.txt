@@ -1,3 +1,11 @@
 2018.2.1 start to learn git again
  git everyday
 
+git config
+mkdir 
+pwd
+git init
+git add
+git commit -m
+
+
