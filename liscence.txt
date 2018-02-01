@@ -1,3 +1,0 @@
-working directory
-stage
-master
