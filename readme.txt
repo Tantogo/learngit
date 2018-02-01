@@ -10,3 +10,6 @@ git commit -m
 
 git log  --pretty=oneline
 git status
+
+
+git branch
