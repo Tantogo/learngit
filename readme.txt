@@ -9,4 +9,4 @@ git add
 git commit -m
 
 git log  --pretty=oneline
-
+git status
