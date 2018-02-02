@@ -18,7 +18,7 @@ git checkout -b  conflict1
 
 no-ff=no fast-forward
 
-git stash-test
+git stash-testbug
 
 
 
