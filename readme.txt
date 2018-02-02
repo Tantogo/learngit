@@ -14,4 +14,5 @@ git status
 
 git branch
 
-git  checkout -BB confli
+git checkout -b  conflict1
+
