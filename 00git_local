@@ -1,0 +1,113 @@
+00 git  local
+
+Linus花了两周时间自己用C写了一个分布式版本控制系统，这就是Git
+
+CVS作为最早的开源而且免费的集中式版本控制系统.
+SVN修正了CVS的一些稳定性问题，是目前用得最多的集中式版本库控制系统。
+
+安装
+Ubantu :
+git 
+查看是否安装
+Sudo apt-get install git
+
+Mac OX
+Git之后提示
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun.
+解决方法
+xcode-select --install
+This will download and install xcode developer tools and fix the problem. The problem is that one needs to explicitly agree to the license agreement.
+
+设置
+$ git config --global user.name "Your Name"
+$ git config --global user.email "email@example.com"
+—global这个参数表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+
+
+创建版本库
+选择位置，创建目录
+$ mkdir learngit
+$ cd learngit
+$ pwd
+/Users/michael/learngit
+pwd 显示当前目录
+如果你没有看到.git目录，那是因为这个目录默认是隐藏的，用ls -ah命令就可以看见。
+
+git init
+把这个目录变成Git可以管理的仓库
+.git的目录，这个目录是Git来跟踪管理版本库的
+创建Git版本库时，Git自动为我们创建了唯一一个master分支
+
+其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外，图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化；
+Microsoft的Word格式是二进制格式；千万不要使用Windows自带的记事本编辑任何文本文件，原因是Microsoft开发记事本的团队使用了一个非常弱智的行为来保存UTF-8编码的文件，他们自作聪明地在每个文件开头添加了0xefbbbf（十六进制）的字符
+
+如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。
+
+添加文件到仓库
+git add 
+添加文件；把要提交的所有修改放到暂存区（Stage）
+git commit –m “****”
+提交文件， 添加说明；一次性把暂存区的所有修改提交到分支。
+commit可以一次提交很多文件，Git的commit id是一个SHA1计算出来的一个非常大的数字，用十六进制表示
+
+命令
+git status
+仓库当前的状态
+
+git diff
+看具体修改的内容, 显示的格式正是Unix通用的diff格式
+git diff HEAD -- readme.txt.     —前后有空格
+可以查看工作区和版本库里面最新版本（HEAD）文件（readme.txt）的区别
+
+类似3628164...882e1e0的是commit id（版本号）
+
+git log –-pretty=oneline
+
+Q 退出打印
+
+回退与恢复
+git reset -–hard ****
+git reset --hard HEAD^
+HEAD 为当前版本，之前的版本为 HEAD^,HEAD^^  HEAD~100
+
+git reflog
+查看命令历史,记录每一次命令
+
+工作区和暂存区
+工作区：电脑里的目录，某个文件夹
+版本库 repository包括
+	暂存区：stage（index），add 之后，可以多次add
+	分支master，commit之后，一次将所有add 都commit；指向master的指针HEAD
+￼
+
+工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
+
+管理修改
+Git跟踪并管理的是修改，而非文件
+
+a.撤销工作区修改
+	回到最近一次git commit或git add时的状态
+	1.	上一次无 add， git checkout -- **file**  还原到版本库的version  ， 还原到分支版本
+	2.	上一次add 但是没有 commit ，git checkout -- **file**  还原到暂存区版本， 还原到stage 版本。
+b.撤销暂存区修改
+	git reset HEAD **file**       ，之后暂存区为 干净的，工作区有修改
+	git reset命令既可以回退版本，同时把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。
+ 彻底撤销 暂存区修改 先b 再a
+
+git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。
+
+删除文件
+
+Linux 里  rm **** 删除文件
+
+先rm ****
+真的删除：git rm ****  + git commit  删除版本库文件，   
+取消删除：再git checkout --****  用版本库文件替换工作区版本
+
+
+
+
+
+
+
