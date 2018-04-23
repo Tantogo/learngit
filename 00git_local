@@ -1,9 +1,10 @@
 00 git  local
-
 Linus花了两周时间自己用C写了一个分布式版本控制系统，这就是Git
 
 CVS作为最早的开源而且免费的集中式版本控制系统.
 SVN修正了CVS的一些稳定性问题，是目前用得最多的集中式版本库控制系统。
+
+
 
 安装
 Ubantu :
@@ -18,10 +19,13 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 xcode-select --install
 This will download and install xcode developer tools and fix the problem. The problem is that one needs to explicitly agree to the license agreement.
 
+
+
 设置
 $ git config --global user.name "Your Name"
 $ git config --global user.email "email@example.com"
 —global这个参数表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+
 
 
 创建版本库
@@ -43,12 +47,16 @@ Microsoft的Word格式是二进制格式；千万不要使用Windows自带的记
 
 如果没有历史遗留问题，强烈建议使用标准的UTF-8编码，所有语言使用同一种编码，既没有冲突，又被所有平台所支持。
 
+
+
 添加文件到仓库
 git add 
 添加文件；把要提交的所有修改放到暂存区（Stage）
 git commit –m “****”
 提交文件， 添加说明；一次性把暂存区的所有修改提交到分支。
 commit可以一次提交很多文件，Git的commit id是一个SHA1计算出来的一个非常大的数字，用十六进制表示
+
+
 
 命令
 git status
@@ -65,6 +73,8 @@ git log –-pretty=oneline
 
 Q 退出打印
 
+
+
 回退与恢复
 git reset -–hard ****
 git reset --hard HEAD^
@@ -72,6 +82,8 @@ HEAD 为当前版本，之前的版本为 HEAD^,HEAD^^  HEAD~100
 
 git reflog
 查看命令历史,记录每一次命令
+
+
 
 工作区和暂存区
 工作区：电脑里的目录，某个文件夹
@@ -81,6 +93,7 @@ git reflog
 ￼
 
 工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
 
 
 管理修改
@@ -97,8 +110,9 @@ b.撤销暂存区修改
 
 git checkout -- file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令，我们在后面的分支管理中会再次遇到git checkout命令。
 
-删除文件
 
+
+删除文件
 Linux 里  rm **** 删除文件
 
 先rm ****
