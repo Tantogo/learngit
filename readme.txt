@@ -14,7 +14,9 @@ git status
 
 git branch
 
+
 git checkout  conflict1
+
 
 no-ff=no fast-forward
 
