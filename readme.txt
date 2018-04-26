@@ -14,7 +14,7 @@ git status
 
 git branch
 
-git checkout -b  conflict1
+git checkout conflict1
 
 no-ff=no fast-forward
 
