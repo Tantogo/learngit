@@ -1,0 +1,71 @@
+02 Git branch
+
+一开始的时候，master分支是一条线，Git用master指向最新的提交，再用HEAD指向master，就能确定当前分支，以及当前分支的提交点：
+￼
+创建新的分支
+例如dev时，Git新建了一个指针叫dev，指向master相同的提交，再把HEAD指向dev，就表示当前分支在dev上：
+￼
+
+git  checkout -b dev
+-b: 创建并切换 相当于 git branch dev 和 git checkout dev
+
+git branch ：列出所有分支，当前分支带*
+
+合并分支
+最简单的方法，就是直接把master指向dev的当前提交，就完成了合并，合并完分支后，甚至可以删除dev分支。
+￼
+删除dev分支就是把dev指针给删掉，删掉后，我们就剩下了一条master分支：
+
+1.切换回master 分支： git checkout master
+	切换分支时记得关闭文件。
+2.合并：git merge dev :    合并指定分支到当前分支。
+3.删除dev 分支 git branch -d dev
+
+退出git log   —— q
+
+处理冲突
+branch 改动， add  , commit
+切到master 分支，改动, add , commit，Merge  branch———冲突——修改冲突 — 在master 上 add& commit.—delete branch
+
+git log --graph --pretty=oneline --abbrev-commit
+查看分支合并情况
+
+
+保留分支历史，及分支管理
+fast forward 删除分支后，会丢掉分支信息
+
+git merge --no-ff -m "merge with no-ff" dev
+因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去
+****-m是对master的备注， ****
+？不使用no-ff 也会保留 分支历史？
+￼
+
+bug处理
+git stash 储存当前工作区 没有stage的内容
+git stash list
+恢复stash ： 
+git stash apply stash@{0} ,再git stash drop 删除 stash 内容；
+git stash pop（恢复加删除）
+
+Stash— git checkout ****—git checkout -b bug1 新建bug分支处理—master上merge—git checkout dev 分支—取出stash
+******如果bug在master上，修改后 在继续stash内容的工作， 会继承 在master上的修改，******因为bug branch 先merge
+******即在master上merge dev不会有conflict。（dev上为新加的内容，master修改为之前内容）******
+
+******dev 创建于 bug branch 之前， master上的bug 也应该在dev branch 上，merge 时 dev 和master 有冲突， 修改master ******上的冲突（已 bug fixed 代码为准），并且 commit  及merge 后显示 up to date， 回到dev  ， bug 代码还存在（master上******commit  不影响 dev），
+******回到master merge 还是显示up to date ，在dev上再次add commit 回到master上merge还是up-to-date， 
+******基于dev的 个人分支上， bug也需要处理（保留分支编辑历史，分支处理bug， 不保留（直接从dev上新建个人分支）******
+****** master ， dev， tan 都为checkout -b conflict1，dev 改为checkout -b 并stash 
+******master 上 fix bug 后为checkout conflict1，
+******dev上 checkout -b ， commit
+******master merge dev ， 处理冲突后commit ，显示up to date
+******dev上 还是checkout -b
+
+
+feature 分支
+git branch -D <name>强行删除。丢弃一个没有被合并过的分支
+
+
+master
+dev
+bug
+feature
