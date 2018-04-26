@@ -1,0 +1,88 @@
+01 github 远程仓库
+
+cd ～进入用户主目录
+cat 是 Concatenate （连续）的简写
+cat **file** 查看文件内容
+
+建立github远程传输连接
+git 通过ssh 通信，需要使用hash加密
+1.创建ssh key
+	ssh-keygen -t rsa -C "youremail@example.com"
+	C要大写
+	在 用户主目录生成 ssh key
+	在ubantu里显示不了id_rsa 和id_rsa.pub， 用cat 查看
+2.设置github
+	github 新建用户----添加ssh key  （id_rsa.pub）---create new repository
+3.关联远程仓库
+	git remote add origin git@github.com:****/learngit.git
+	需要在本地 learngit 仓库下运行
+	添加后，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的，但是origin这个名字一看就知道是远程库。
+4.推送
+	git push -u origin master
+	本地库推送到远程库
+	我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把	本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+	git push origin master
+
+从远程库克隆
+1.github创建新仓库
+	勾选Initialize this repository with a README，这样GitHub会自动为我们创建一个README.md文件
+2.git clone git@github.com:tantogo/gittest.git
+从远程库下载
+一般只是第一次用，后面用git pull
+GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/gitskills.git这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
+
+多人协作
+使用Mac 作为第二开发者提交
+1.在user下ssh keygen， 添加ssh key 到 github
+	cd .ssh 进入， 再 car id_rsa.pub
+2.Clone master: git clone git@github.com:michaelliao/learngit.git
+	要在dev分支上开发，就必须创建远程origin的dev分支到本地，用这个命令创建本地dev分支：
+	git checkout -b dev origin/dev
+
+***没试过***
+cd .ssh
+ssh-keygen -t rsa -C"new email”.  ——生成新id rsa 和 pub
+需要注意，出现提示输入文件名的时候要输入与默认配置不一样的文件名，比如： id_rsa_new
+执行ssh-agent让ssh识别新的私钥
+ssh-add ~/.ssh/id_rsa_new
+添加SSH到钥匙串
+ssh-add -K KeyPathOrKeyName
+***没试过***
+
+git remote
+查看远程库名称
+git remote -v 
+查看远程库详细信息
+
+在Mac Git pull 之后 进入vi：
+ git uses your default editor.
+To solve this:
+1. press "i"
+2. write your merge message
+3. press "esc"
+4. write ":wq"
+5. then press enter
+
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，
+用命令git branch --set-upstream branch-name origin/branch-name。
+
+
+本地库同时同步到github 和gitee
+git remote add gitee git@gitee.com:tantogo/learngit.git
+远程库名字为gitee
+
+修改gittub关联库名字
+1.删除已关联的名为origin的远程库
+	git remote rm github
+2.再关联github 远程库
+	git remote add github git@github.com:tantogo/learngit.git
+推送
+git push github master
+git push gitee master
+
+创建远程repo时，选了带readme.txt ， 本地push -u 不上远程
+
+ 
+
+
