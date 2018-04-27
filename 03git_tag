@@ -1,0 +1,40 @@
+
+03 Git  tag
+标签管理
+发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本
+标签也是版本库的一个快照
+创建和删除标签都是瞬间完成的。
+tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。
+
+
+切换到branch
+git tag  <tagname>
+
+git tag
+查看所有标签： 
+
+给历史commit 打tag： git log --pretty=oneline --abbrev-commit  再 git tag <tagname> <commit id>
+标签不是按时间顺序列出，而是按字母排序的
+
+git show <tag>
+查看标签说明
+
+git tag -a v0.1 -m "version 0.1 released" 3628164
+指定标签名，指定说明文字
+
+通过-s用私钥签名一个标签
+git tag -s v0.2 -m "signed version 0.2 released" fec145a
+签名采用PGP签名，因此，必须首先安装gpg（GnuPG），如果没有找到gpg，或者没有gpg密钥对，就会报错
+
+用PGP签名的标签是不可伪造的，因为可以验证PGP签名
+
+
+命令git push origin <tagname>可以推送一个本地标签； 
+命令git push origin --tags可以推送全部未推送过的本地标签； 
+命令git tag -d <tagname>可以删除一个本地标签； 
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签。（origin后有空格）
+
+要删除远程标签就麻烦一点，先从本地删除再删除远程标签 
+
+
+

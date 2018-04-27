@@ -101,7 +101,7 @@ Git跟踪并管理的是修改，而非文件
 
 a.撤销工作区修改
 	回到最近一次git commit或git add时的状态
-	1.	上一次无 add， git checkout -- **file**  还原到版本库的version  ， 还原到分支版本
+	1.	上一次无 add， git checkout -- **file**  还原到版本库的version  ， 还原到分支版本（-- 后有空格）
 	2.	上一次add 但是没有 commit ，git checkout -- **file**  还原到暂存区版本， 还原到stage 版本。
 b.撤销暂存区修改
 	git reset HEAD **file**       ，之后暂存区为 干净的，工作区有修改
