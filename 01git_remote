@@ -1,4 +1,4 @@
-01 github 远程仓库
+01 github remote
 
 cd ～进入用户主目录
 cat 是 Concatenate （连续）的简写
@@ -21,7 +21,7 @@ git 通过ssh 通信，需要使用hash加密
 	git push -u origin master
 	本地库推送到远程库
 	我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把	本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
-	git push origin master
+	git push origin master ： origin 为远程库名字， master为远程库分支名字。
 
 从远程库克隆
 1.github创建新仓库
@@ -39,6 +39,11 @@ GitHub给出的地址不止一个，还可以用https://github.com/michaelliao/g
 2.Clone master: git clone git@github.com:michaelliao/learngit.git
 	要在dev分支上开发，就必须创建远程origin的dev分支到本地，用这个命令创建本地dev分支：
 	git checkout -b dev origin/dev
+
+新用户只能看到master 分支， 需要本地创建dev 分支，再push（push之前要先git pull）。
+
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，
+用命令git branch --set-upstream branch-name origin/branch-name。
 
 ***没试过***
 cd .ssh
